@@ -6,7 +6,8 @@ void calcular_mision(SimulacionSLS *sim) {
     /* Fase 1 */
     sim->v1 = sim->a1 * sim->t1;
     sim->y1 = 0.5 * sim->a1 * sim->t1 * sim->t1;
-    sim->g_max = sim->a1 / G_TIERRA;
+    double a_mayor = (sim->a1 > sim->a2) ? sim->a1 : sim->a2;
+sim->g_max = a_mayor / G_TIERRA;
 
     /* Caso borde: la fase 1 ya llego (o paso) la altura objetivo */
     if (sim->y1 >= sim->h_target) {
