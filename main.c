@@ -11,6 +11,8 @@ int main(void) {
 
     do {
         printf("\n=== SIMULADOR ARTEMIS - SLS ===\n");
+        printf("[Actual -> a1: %.1f m/s2 | t1: %.1f s | a2: %.1f m/s2 | h: %.0f m]\n",
+               sim.a1, sim.t1, sim.a2, sim.h_target);
         printf("1. Ver reporte de la mision\n");
         printf("2. Cambiar parametros\n");
         printf("3. Ver trayectoria del ascenso\n");
