@@ -22,38 +22,41 @@ Al llegar a dicha altura, los motores se apagan. A partir de ese momento, el sim
 El programa también determina la aceleración máxima experimentada durante la primera fase, expresada como múltiplo de la gravedad terrestre.
 
 - Reglas del Juego
+
 El programa presenta un menú interactivo que permite consultar los resultados, modificar los parámetros y visualizar la trayectoria del ascenso.
 Las opciones disponibles son:
-Ver reporte de la misión: muestra los resultados de los cálculos realizados.
-Cambiar parámetros: permite ingresar nuevos valores para las aceleraciones, el tiempo de la primera fase y la altura objetivo.
-Ver trayectoria del ascenso: presenta una tabla con los valores de altura y velocidad registrados durante el vuelo.
-Salir: finaliza la ejecución del programa.
-Parámetros modificables
+- Ver reporte de la misión: muestra los resultados de los cálculos realizados.
+- Cambiar parámetros: permite ingresar nuevos valores para las aceleraciones, el tiempo de la primera fase y la altura objetivo.
+- Ver trayectoria del ascenso: presenta una tabla con los valores de altura y velocidad registrados durante el vuelo.
+- Salir: finaliza la ejecución del programa.
+- Parámetros modificables
+  
 El usuario puede modificar los siguientes valores, respetando los rangos establecidos:
-Parámetro           Valor inicial      Rango permitido
-Aceleración (a)     20,0 m/s²          5 a 50 m/s²
-Tiempo (t1)         120,0 s            10 a 300 s
-Aceleración (a2)    12,5 m/s²          1 a 30 m/s²
-Altura objetivo     160.000 m          50.000 a 500.000 m
+- Aceleración (a): 20,0 m/s², con un rango permitido de 5 a 50 m/s².
+- Tiempo (t1): 120,0 s, con un rango permitido de 10 a 300 s.
+- Segunda aceleración (a2): 12,5 m/s², con un rango permitido de 1 a 30 m/s².
+- Altura objetivo: 160.000 m, con un rango permitido de 50.000 a 500.000 m.
 
 
 El sistema utiliza los siguientes criterios al finalizar la simulación:
-Misión exitosa: cuando existe una segunda fase y la aceleración máxima no supera el límite establecido de 4 g.
-Aceleración excesiva: cuando la aceleración máxima de la primera fase supera los 4 g.
-Perfil de vuelo inválido: cuando la primera fase alcanza o supera la altura objetivo, por lo que no resulta necesaria una segunda fase.
+- Misión exitosa: cuando existe una segunda fase y la aceleración máxima no supera el límite establecido de 4 g.
+- Aceleración excesiva: cuando la aceleración máxima de la primera fase supera los 4 g.
+- Perfil de vuelo inválido: cuando la primera fase alcanza o supera la altura objetivo, por lo que no resulta necesaria una segunda fase.
 El límite de 4 g es un criterio simplificado definido para este proyecto y no representa una certificación real de seguridad para vuelos tripulados.
 
 - Funcionamiento del programa
 Al iniciar el simulador, se establecen los valores iniciales de los parámetros y se realizan automáticamente los cálculos de la misión y la simulación del ascenso.
 Posteriormente, se muestra un menú que permite al usuario interactuar con el programa.
 El reporte presenta los siguientes resultados:
-Velocidad alcanzada al finalizar la primera fase (v1).
-Altura alcanzada al momento del desacople de los SRB (y1).
-Velocidad al momento del apagado de los motores (v2).
-Tiempo total transcurrido hasta el apagado de los motores.
-Altura máxima estimada durante la caída libre (hmáx).
-Aceleración máxima expresada en múltiplos de g.
-Veredicto de la misión según los criterios establecidos.
+
+- Velocidad alcanzada al finalizar la primera fase (v1).
+- Altura alcanzada al momento del desacople de los SRB (y1).
+- Velocidad al momento del apagado de los motores (v2).
+- Tiempo total transcurrido hasta el apagado de los motores.
+- Altura máxima estimada durante la caída libre (hmáx).
+- Aceleración máxima expresada en múltiplos de g.
+- Veredicto de la misión según los criterios establecidos.
+
 Además, el usuario puede consultar una tabla que representa la trayectoria del ascenso, mostrando los valores de altura y velocidad registrados.
 Cuando se modifican los parámetros, el programa vuelve a calcular los resultados y genera una nueva trayectoria.
 También se contemplan situaciones particulares, como el caso en el que la primera fase alcanza o supera directamente la altura objetivo. En ese caso, se informa que no existe una segunda fase válida.
@@ -61,6 +64,7 @@ También se contemplan situaciones particulares, como el caso en el que la prime
 - Arquitectura y modularización
 El programa fue desarrollado en lenguaje C y organizado en diferentes archivos para separar las responsabilidades y facilitar su comprensión.
 La estructura del proyecto es la siguiente:
+
 Simulador-Artemis/
 │
 ├── main.c
@@ -68,38 +72,34 @@ Simulador-Artemis/
 ├── simulador.h
 ├── validaciones.c
 ├── validaciones.h
-Descripción de los archivos
-main.c
-Contiene la función principal main(). Se encarga de inicializar la estructura de simulación, ejecutar los cálculos iniciales y controlar el menú de opciones mediante una estructura repetitiva do-while y estructuras condicionales.
-simulador.c
-Contiene las funciones encargadas de realizar los cálculos físicos y presentar los resultados:
+
+Descripción de los archivos: 
+
+- main.c: Contiene la función principal main(). Se encarga de inicializar la estructura de simulación, ejecutar los cálculos iniciales y controlar el menú de opciones mediante una estructura repetitiva do-while y estructuras condicionales.
+- simulador.c: Contiene las funciones encargadas de realizar los cálculos físicos y presentar los resultados:
 calcular_mision(): calcula las velocidades, alturas, tiempo de apagado y altura máxima.
 simular_ascenso(): genera los datos de la trayectoria del cohete.
 mostrar_reporte(): presenta los resultados obtenidos.
 mostrar_trayectoria(): muestra los datos de altura y velocidad durante el ascenso.
-simulador.h
-Define la estructura SimulacionSLS, que almacena los parámetros de entrada, los resultados y los datos de la trayectoria. También contiene constantes y declaraciones de funciones utilizadas en el módulo.
-validaciones.c
-Contiene las funciones destinadas a controlar las entradas ingresadas por el usuario. Verifica que los datos sean numéricos y que los valores se encuentren dentro de los rangos permitidos.
+- simulador.h: Define la estructura SimulacionSLS, que almacena los parámetros de entrada, los resultados y los datos de la trayectoria. También contiene constantes y declaraciones de funciones utilizadas en el módulo.
+- validaciones.c: Contiene las funciones destinadas a controlar las entradas ingresadas por el usuario. Verifica que los datos sean numéricos y que los valores se encuentren dentro de los rangos permitidos.
 validaciones.h
 Contiene las declaraciones de las funciones de validación utilizadas desde el programa principal.
 Esta organización permite dividir el programa en módulos independientes, facilitando la reutilización de funciones. 
 
 - Compilación y ejecución
-Requisitos
+Requisitos: 
 Para compilar y ejecutar el programa se necesita:
 Un sistema operativo Windows, Linux o equivalente.
 Un compilador de lenguaje C, como GCC.
 Visual Studio Code u otro editor de código (opcional).
 En Windows se puede utilizar GCC mediante MSYS2.
-Compilación
+Compilación: 
 Ubicarse desde la terminal en la carpeta raíz del proyecto y ejecutar:
 gcc main.c simulador.c validaciones.c -o simulador -lm
-Ejecución
-En Windows:
-./simulador.exe
-En Linux:
-./simulador
+Ejecución: 
+En Windows:./simulador.exe
+En Linux: ./simulador
 Una vez ejecutado, aparecerá el menú principal del simulador.
 
 - Registro del uso de Inteligencia Artificial
