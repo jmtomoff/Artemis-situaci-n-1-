@@ -18,21 +18,27 @@ int main(void) {
 
         op = leer_entero("Opcion [1-4]: ", 1, 4);
 
-        if (op == 1) {
-            mostrar_reporte(&sim);
-        } else if (op == 2) {
-            sim.a1       = leer_double("Aceleracion a1 (5-50): ", 5.0, 50.0);
-            sim.t1       = leer_double("Tiempo t1 (10-300): ", 10.0, 300.0);
-            sim.a2       = leer_double("Aceleracion a2 (1-30): ", 1.0, 30.0);
-            sim.h_target = leer_double("Altura objetivo (50000-500000): ", 50000.0, 500000.0);
-            calcular_mision(&sim);
-            simular_ascenso(&sim);
-            mostrar_reporte(&sim);
-        } else if (op == 3) {
-            mostrar_trayectoria(&sim);
+        switch (op) {
+            case 1:
+                mostrar_reporte(&sim);
+                break;
+            case 2:
+                sim.a1       = leer_double("Aceleracion a1 (5-50): ", 5.0, 50.0);
+                sim.t1       = leer_double("Tiempo t1 (10-300): ", 10.0, 300.0);
+                sim.a2       = leer_double("Aceleracion a2 (1-30): ", 1.0, 30.0);
+                sim.h_target = leer_double("Altura objetivo (50000-500000): ", 50000.0, 500000.0);
+                calcular_mision(&sim);
+                simular_ascenso(&sim);
+                mostrar_reporte(&sim);
+                break;
+            case 3:
+                mostrar_trayectoria(&sim);
+                break;
+            case 4:
+                printf("Fin del simulador.\n");
+                break;
         }
     } while (op != 4);
 
-    printf("Fin del simulador.\n");
     return 0;
 }
