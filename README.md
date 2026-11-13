@@ -49,13 +49,13 @@ Al iniciar el simulador, se establecen los valores iniciales de los parámetros 
 Posteriormente, se muestra un menú que permite al usuario interactuar con el programa.
 El reporte presenta los siguientes resultados:
 
-- Velocidad alcanzada al finalizar la primera fase (v1).
-- Altura alcanzada al momento del desacople de los SRB (y1).
-- Velocidad al momento del apagado de los motores (v2).
-- Tiempo total transcurrido hasta el apagado de los motores.
-- Altura máxima estimada durante la caída libre (hmáx).
-- Aceleración máxima expresada en múltiplos de g.
-- Veredicto de la misión según los criterios establecidos.
+1- Velocidad alcanzada al finalizar la primera fase (v1).
+2- Altura alcanzada al momento del desacople de los SRB (y1).
+3- Velocidad al momento del apagado de los motores (v2).
+4- Tiempo total transcurrido hasta el apagado de los motores.
+5- Altura máxima estimada durante la caída libre (hmáx).
+6- Aceleración máxima expresada en múltiplos de g.
+7- Veredicto de la misión según los criterios establecidos.
 
 Además, el usuario puede consultar una tabla que representa la trayectoria del ascenso, mostrando los valores de altura y velocidad registrados.
 Cuando se modifican los parámetros, el programa vuelve a calcular los resultados y genera una nueva trayectoria.
@@ -75,14 +75,14 @@ Simulador-Artemis/
 
 Descripción de los archivos: 
 
-- main.c: Contiene la función principal main(). Se encarga de inicializar la estructura de simulación, ejecutar los cálculos iniciales y controlar el menú de opciones mediante una estructura repetitiva do-while y estructuras condicionales.
-- simulador.c: Contiene las funciones encargadas de realizar los cálculos físicos y presentar los resultados:
+main.c: Contiene la función principal main(). Se encarga de inicializar la estructura de simulación, ejecutar los cálculos iniciales y controlar el menú de opciones mediante una estructura repetitiva do-while y estructuras condicionales.
+simulador.c: Contiene las funciones encargadas de realizar los cálculos físicos y presentar los resultados:
 calcular_mision(): calcula las velocidades, alturas, tiempo de apagado y altura máxima.
 simular_ascenso(): genera los datos de la trayectoria del cohete.
 mostrar_reporte(): presenta los resultados obtenidos.
 mostrar_trayectoria(): muestra los datos de altura y velocidad durante el ascenso.
-- simulador.h: Define la estructura SimulacionSLS, que almacena los parámetros de entrada, los resultados y los datos de la trayectoria. También contiene constantes y declaraciones de funciones utilizadas en el módulo.
-- validaciones.c: Contiene las funciones destinadas a controlar las entradas ingresadas por el usuario. Verifica que los datos sean numéricos y que los valores se encuentren dentro de los rangos permitidos.
+simulador.h: Define la estructura SimulacionSLS, que almacena los parámetros de entrada, los resultados y los datos de la trayectoria. También contiene constantes y declaraciones de funciones utilizadas en el módulo.
+validaciones.c: Contiene las funciones destinadas a controlar las entradas ingresadas por el usuario. Verifica que los datos sean numéricos y que los valores se encuentren dentro de los rangos permitidos.
 validaciones.h
 Contiene las declaraciones de las funciones de validación utilizadas desde el programa principal.
 Esta organización permite dividir el programa en módulos independientes, facilitando la reutilización de funciones. 
